@@ -1,0 +1,68 @@
+﻿@media print, screen {
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+
+    #printContent {
+        margin: 0;
+        background: white;
+        padding: 15px;
+    }
+
+    #printContent {
+        font-family: Verdana;
+    }
+
+    #printContent, .space {
+        padding-bottom: 50px;
+    }
+
+        #printContent #endText {
+            text-align: center;
+            margin: 30px;
+        }
+
+        #printContent #sum {
+            text-align: right;
+            text-decoration: underline;
+            font-size: 30px;
+            margin-right: 50px;
+        }
+
+        #printContent #number {
+            float: right;
+            margin-right: 5px;
+        }
+
+        #printContent #createDate {
+            /*margin-left:5px;
+        */
+        }
+
+        #printContent .left {
+            float: left;
+        }
+
+        #printContent .right {
+            float: right;
+        }
+
+        #printContent h3 {
+            /*width: 100%;
+        */
+            text-align: center;
+            /*font-size:18px;
+        */
+            /*margin:2px;
+        */
+            font-family: Verdana;
+            line-height: 5px;
+        }
+
+        #printContent .eachRow {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+}

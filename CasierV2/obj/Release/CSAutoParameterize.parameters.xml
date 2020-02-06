@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CasierContents-Web.config Connection String" description="CasierContents Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/CasierDB.csdl|res://*/CasierDB.ssdl|res://*/CasierDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=casiercontent.database.windows.net;initial catalog=CasierContent;persist security info=True;user id=casier;password=Changelevel5;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Casier\\CasierV2\\CasierV2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CasierContents']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Casier\\CasierV2\\CasierV2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

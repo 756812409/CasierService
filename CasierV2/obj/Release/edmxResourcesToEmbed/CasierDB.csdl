@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CasierContentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CategorySet">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ItemSet" Relationship="Self.FK_CategorySetItemSet" FromRole="CategorySet" ToRole="ItemSet" />
+  </EntityType>
+  <EntityType Name="CreatorSet">
+    <Key>
+      <PropertyRef Name="CreatorId" />
+    </Key>
+    <Property Name="CreatorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CPR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MonthSalary" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="HourSalary" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Evaluation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BankInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InvoiceHeaderSet" Relationship="Self.FK_CreatorSetInvoiceHeaderSet" FromRole="CreatorSet" ToRole="InvoiceHeaderSet" />
+    <NavigationProperty Name="WorkinghoursSet" Relationship="Self.FK_CreatorSetWorkinghoursSet" FromRole="CreatorSet" ToRole="WorkinghoursSet" />
+  </EntityType>
+  <EntityType Name="InvoiceHeaderDetailsSet">
+    <Key>
+      <PropertyRef Name="InvoiceHeaderDetailsId" />
+    </Key>
+    <Property Name="InvoiceHeaderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int16" />
+    <Property Name="OrderTime" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceHeaderSetInvoiceHeaderSetId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InvoiceHeaderSet" Relationship="Self.FK_InvoiceHeaderSetInvoiceHeaderDetailsSet" FromRole="InvoiceHeaderDetailsSet" ToRole="InvoiceHeaderSet" />
+    <NavigationProperty Name="ItemSet" Relationship="CasierContentModel.InvoiceHeaderDetailsSetItemSet" FromRole="InvoiceHeaderDetailsSet" ToRole="ItemSet" />
+  </EntityType>
+  <EntityType Name="InvoiceHeaderSet">
+    <Key>
+      <PropertyRef Name="InvoiceHeaderSetId" />
+    </Key>
+    <Property Name="InvoiceHeaderSetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="PayDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatorSetCreatorId" Type="Int32" />
+    <Property Name="ReservationSetReservationId" Type="Int32" />
+    <NavigationProperty Name="CreatorSet" Relationship="Self.FK_CreatorSetInvoiceHeaderSet" FromRole="InvoiceHeaderSet" ToRole="CreatorSet" />
+    <NavigationProperty Name="InvoiceHeaderDetailsSet" Relationship="Self.FK_InvoiceHeaderSetInvoiceHeaderDetailsSet" FromRole="InvoiceHeaderSet" ToRole="InvoiceHeaderDetailsSet" />
+    <NavigationProperty Name="ReservationSet" Relationship="Self.FK_ReservationSetInvoiceHeaderSet" FromRole="InvoiceHeaderSet" ToRole="ReservationSet" />
+  </EntityType>
+  <EntityType Name="ItemSet">
+    <Key>
+      <PropertyRef Name="ItemSetId" />
+    </Key>
+    <Property Name="ItemSetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="Int16" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CategorySetCategoryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CategorySet" Relationship="Self.FK_CategorySetItemSet" FromRole="ItemSet" ToRole="CategorySet" />
+    <NavigationProperty Name="InvoiceHeaderDetailsSet" Relationship="CasierContentModel.InvoiceHeaderDetailsSetItemSet" FromRole="ItemSet" ToRole="InvoiceHeaderDetailsSet" />
+  </EntityType>
+  <EntityType Name="ReservationSet">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InvoiceHeaderSet" Relationship="Self.FK_ReservationSetInvoiceHeaderSet" FromRole="ReservationSet" ToRole="InvoiceHeaderSet" />
+  </EntityType>
+  <EntityType Name="WorkinghoursSet">
+    <Key>
+      <PropertyRef Name="WorkingHoursId" />
+    </Key>
+    <Property Name="WorkingHoursId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartHour" Type="DateTime" Precision="3" />
+    <Property Name="EndHour" Type="DateTime" Precision="3" />
+    <Property Name="CreatorSetCreatorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CreatorSet" Relationship="Self.FK_CreatorSetWorkinghoursSet" FromRole="WorkinghoursSet" ToRole="CreatorSet" />
+  </EntityType>
+  <Association Name="FK_CategorySetItemSet">
+    <End Role="CategorySet" Type="Self.CategorySet" Multiplicity="1" />
+    <End Role="ItemSet" Type="Self.ItemSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategorySet">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="ItemSet">
+        <PropertyRef Name="CategorySetCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreatorSetInvoiceHeaderSet">
+    <End Role="CreatorSet" Type="Self.CreatorSet" Multiplicity="0..1" />
+    <End Role="InvoiceHeaderSet" Type="Self.InvoiceHeaderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreatorSet">
+        <PropertyRef Name="CreatorId" />
+      </Principal>
+      <Dependent Role="InvoiceHeaderSet">
+        <PropertyRef Name="CreatorSetCreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreatorSetWorkinghoursSet">
+    <End Role="CreatorSet" Type="Self.CreatorSet" Multiplicity="1" />
+    <End Role="WorkinghoursSet" Type="Self.WorkinghoursSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreatorSet">
+        <PropertyRef Name="CreatorId" />
+      </Principal>
+      <Dependent Role="WorkinghoursSet">
+        <PropertyRef Name="CreatorSetCreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceHeaderSetInvoiceHeaderDetailsSet">
+    <End Role="InvoiceHeaderSet" Type="Self.InvoiceHeaderSet" Multiplicity="1" />
+    <End Role="InvoiceHeaderDetailsSet" Type="Self.InvoiceHeaderDetailsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceHeaderSet">
+        <PropertyRef Name="InvoiceHeaderSetId" />
+      </Principal>
+      <Dependent Role="InvoiceHeaderDetailsSet">
+        <PropertyRef Name="InvoiceHeaderSetInvoiceHeaderSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationSetInvoiceHeaderSet">
+    <End Role="ReservationSet" Type="Self.ReservationSet" Multiplicity="0..1" />
+    <End Role="InvoiceHeaderSet" Type="Self.InvoiceHeaderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReservationSet">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="InvoiceHeaderSet">
+        <PropertyRef Name="ReservationSetReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CasierContents" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CategorySet" EntityType="Self.CategorySet" />
+    <EntitySet Name="CreatorSet" EntityType="Self.CreatorSet" />
+    <EntitySet Name="InvoiceHeaderDetailsSet" EntityType="Self.InvoiceHeaderDetailsSet" />
+    <EntitySet Name="InvoiceHeaderSet" EntityType="Self.InvoiceHeaderSet" />
+    <EntitySet Name="ItemSet" EntityType="Self.ItemSet" />
+    <EntitySet Name="ReservationSet" EntityType="Self.ReservationSet" />
+    <EntitySet Name="WorkinghoursSet" EntityType="Self.WorkinghoursSet" />
+    <AssociationSet Name="FK_CategorySetItemSet" Association="Self.FK_CategorySetItemSet">
+      <End Role="CategorySet" EntitySet="CategorySet" />
+      <End Role="ItemSet" EntitySet="ItemSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreatorSetInvoiceHeaderSet" Association="Self.FK_CreatorSetInvoiceHeaderSet">
+      <End Role="CreatorSet" EntitySet="CreatorSet" />
+      <End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreatorSetWorkinghoursSet" Association="Self.FK_CreatorSetWorkinghoursSet">
+      <End Role="CreatorSet" EntitySet="CreatorSet" />
+      <End Role="WorkinghoursSet" EntitySet="WorkinghoursSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceHeaderSetInvoiceHeaderDetailsSet" Association="Self.FK_InvoiceHeaderSetInvoiceHeaderDetailsSet">
+      <End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+      <End Role="InvoiceHeaderDetailsSet" EntitySet="InvoiceHeaderDetailsSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationSetInvoiceHeaderSet" Association="Self.FK_ReservationSetInvoiceHeaderSet">
+      <End Role="ReservationSet" EntitySet="ReservationSet" />
+      <End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceHeaderDetailsSetItemSet" Association="CasierContentModel.InvoiceHeaderDetailsSetItemSet">
+      <End Role="InvoiceHeaderDetailsSet" EntitySet="InvoiceHeaderDetailsSet" />
+      <End Role="ItemSet" EntitySet="ItemSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="InvoiceHeaderDetailsSetItemSet">
+    <End Type="CasierContentModel.InvoiceHeaderDetailsSet" Role="InvoiceHeaderDetailsSet" Multiplicity="*" />
+    <End Type="CasierContentModel.ItemSet" Role="ItemSet" Multiplicity="1" />
+  </Association>
+</Schema>

@@ -1,0 +1,20 @@
+﻿body{
+    background: url('../Image/casier.jpg') no-repeat center center fixed,linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    );
+    background-size: cover !important;
+    height:100%;
+
+}
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+.pull-right .btn {
+    background: #a09145;
+    color: white;
+    font-size: 16px;
+}

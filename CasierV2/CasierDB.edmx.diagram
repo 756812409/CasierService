@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b355ee86b00410a83180b596b3fccf0" Name="Diagram1">
+        <EntityTypeShape EntityType="CasierContentModel.CategorySet" PointX="5.625" PointY="1.25" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.CreatorSet" PointX="0.75" PointY="4.5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.InvoiceHeaderDetailsSet" PointX="5.25" PointY="5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.InvoiceHeaderSet" PointX="3" PointY="4.5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.ItemSet" PointX="8.5" PointY="3.125" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.ReservationSet" PointX="0.75" PointY="0.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CasierContentModel.WorkinghoursSet" PointX="3" PointY="9.125" Width="1.5" IsExpanded="true" />
+        <AssociationConnector ManuallyRouted="false" Association="CasierContentModel.FK_CategorySetItemSet" />
+        <AssociationConnector ManuallyRouted="false" Association="CasierContentModel.FK_CreatorSetInvoiceHeaderSet" />
+        <AssociationConnector ManuallyRouted="false" Association="CasierContentModel.FK_CreatorSetWorkinghoursSet" />
+        <AssociationConnector ManuallyRouted="false" Association="CasierContentModel.FK_InvoiceHeaderSetInvoiceHeaderDetailsSet" />
+        <AssociationConnector ManuallyRouted="false" Association="CasierContentModel.FK_ReservationSetInvoiceHeaderSet" />
+        <AssociationConnector Association="CasierContentModel.InvoiceHeaderDetailsSetItemSet" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

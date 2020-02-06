@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/admin.css" rel="stylesheet" />
+
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="AdminApp" ng-controller="AdminController">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+
+    @*<div class="container">
+        <div class="row row-centered">
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="Menu()"><div class="content">Menu</div></div></div>
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="BordBestilling()"><div class="content">BordBestilling</div></div></div>
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="Tjener()"><div class="content">Tjener</div></div></div>
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="Kunde()"><div class="content">Kunde</div></div></div>
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="Regning()"><div class="content">Regning</div></div></div>
+            <div class="col-xs-6 col-centered col-fixed"><div class="item" ng-click="SendMail()"><div class="content">SendMail</div></div></div>
+        </div>
+    </div>*@
+    <div class="container">
+        <h4>Create Category</h4>
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="CategorySet.Name" id="Name" placeholder="Enter Name">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="AddCategory(CategorySet)">Submit</button>
+        </form>
+    </div>
+    <div class="container">
+        <h4>Show Item</h4>
+        <div class="row" ng-repeat="category in categoryItems">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#{{category.CategoryId}}">{{category.Name}}</a>
+                        </h4>
+                    </div>
+                    <div id="{{category.CategoryId}}" class="panel-collapse collapse"> 
+                         <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Navn
+                                    </th>
+                                    <th>
+                                        Nummer
+                                    </th>
+                                    <th>
+                                        Pris
+                                    </th>
+                                    <th>
+                                        Rabat
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="items in category.ItemSet">
+                                <tr>
+                                    <td>
+                                      
+                                        <input  type="text" ng-model="items.Name " class="form-control">
+                                    </td>
+                                    <td>
+                                      
+                                        <input  type="text" ng-model="items.Number " class="form-control">
+                                    </td>
+                                    <td>
+                                      
+                                        <input  type="text" ng-model="items.Price " class="form-control">
+                                    </td>
+                                    <td>
+                                        
+                                        <input  type="number" ng-model="items.Discount " class="form-control">
+                                    </td>
+                                    <td>
+                                    
+                                        <span  ng-dblclick="DeleteItem(items)" class="glyphicon glyphicon-remove"></span>
+                                        <span  ng-click="UpdateItem(items.ItemSetId, items.Name, items.Number, items.Price, items.Discount  )" class="glyphicon glyphicon-ok"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       </div>
+                    </div>
+                    <div class="container">
+                        <div class="row row-centered">
+                            <a href="#" ng-click="showCreateReservatioForm = !showCreateReservatioForm" style="text-align:center" class="col-xs-12 col-centered col-fixed">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                           
+                        </div>
+                    </div>
+                    <div class="container" ng-hide="!showCreateReservatioForm">
+                        <form>
+                            <div class="form-group">
+                                <label for="text">Name</label>
+                                <input type="text" class="form-control" ng-model="ItemSet.Name" id="Name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Number</label>
+                                <input type="text" class="form-control" ng-model="ItemSet.Number" id="Number" placeholder="Enter Number">
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Price</label>
+                                <input type="text" class="form-control" ng-model="ItemSet.Price" id="Price" placeholder="Enter Price">
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Discount</label>
+                                <input type="number" class="form-control" ng-model="ItemSet.Discount" id="Discount" placeholder="Enter Discount">
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Description</label>
+                                <input type="text" class="form-control" ng-model="ItemSet.Description" id="Description" placeholder="Enter Description">
+                            </div>
+                            <div class="form-group" ng-hide="true">
+                                <label for="text">Category</label>
+                                <input type="text" class="form-control" disabled="disabled" ng-model="ItemSet.CategorySet.Name" id="Category" ng-init="ItemSet.CategorySet.Name = category.Name" placeholder="Enter Category" ng-value="category.Name">
+                            </div>
+                            <button type="submit" class="btn btn-default" ng-click="AddItems(ItemSet)">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <script src="~/Scripts/CustomScript/Admin.js"></script> 
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130472259-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130472259-1');
+    </script>
+    
+    <meta property="og:url" content="https://www.facebook.com/Yoku-sushi-186999675567789/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yoku sushu" />
+    <meta property="og:description" content="Kvalitets sushi til god pris" />
+    <meta property="og:image" content="https://www.your-domain.com/path/image.jpg" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/mainPage.css" rel="stylesheet" />
+    <title>Forside | Yuko Sushi Brønshøj 2700 | Sushi  </title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="images/favicon.ico" />
+    <meta name="description" content="Se vores online sushi menu her på hjemmesiden!" />
+    <meta name="keywords" content="Nigiri Maki ruller menu Sushi Restaurant Japansk Mad Facebook Yoku Sushi Frederiksundsvej 146e 2700 Danmark Bestil online frederiksundsvej 146e Billigt Lækkert Sushi Ny Hjemmeside Officiel" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height">
+    <script>
+
+        var images = new Array('/Image/maki.jpg', '/Image/japanese-food-in-lincoln-park.jpg', '/Image/plated_sushi.jpg');
+        var nextimage = 0;
+
+        function doSlideshow() {
+
+            if (nextimage >= images.length) { nextimage = 0; }
+            $('#headerwrap')
+                .css('background-image', 'url("' + images[nextimage++] + '")')
+                .fadeIn("5000", function () {
+                    setTimeout(doSlideshow, 5000);
+                });
+
+
+        }
+
+        $(document).ready(function () {
+
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            if (iOS) {
+                $("#headerSection").hide();
+            }
+
+            doSlideshow();
+
+            $('nav a').on('click', function () {
+
+                var scrollAnchor = $(this).attr('data-scroll'),
+                    scrollPoint = $('section[data-scroll^="' + scrollAnchor + '"]').offset().top - 50;
+
+                $('body,html').animate({
+                    scrollTop: scrollPoint
+                }, 500);
+
+                return false;
+
+            });
+
+
+        });
+        window.onscroll = function () {
+            if (window.pageYOffset >= 200) {
+                jQuery('.header-content').css({ display: 'none' });
+
+            }
+            else {
+                jQuery('.header-content').css({ display: 'block' });
+
+            }
+        }
+
+        function toggleInfo() {
+
+
+            $("#info").toggle('slow');
+
+
+            setTimeout(function () {
+
+                if ($('#info').is(':visible')) {
+                    $("#BusinessName").text("Close Map");
+                }
+                else {
+                    $("#BusinessName").text("Kontakt os");
+                }
+
+            }, 600);
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div class="master-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top affix-top navbar-inverse fadeInDown">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation" data-scroll="Main">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand smoothie" href="#">Yuko</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        
+                        <li><a href="https://www.facebook.com/pg/Yoku-sushi-186999675567789/offers/"  target="_blank" class="page-scroll">Tilbud</a></li>
+                        <li><a href="#Menu" class="page-scroll" data-scroll="Menu">Menu</a></li>
+                        <li><a href="tel:22127736" class="page-scroll">Tlf 22 12 77 36</a></li>
+                        @*<li><a href="https://www.google.com/maps/place/Tatami+Sushi+Aps/%4055.405658,11.358472,15z/data=!4m5!3m4!1s0x0:0x8f8e05be7634817c!8m2!3d55.405658!4d11.358472?hl=da-DK&output=embed" target="_blank" class="page-scroll" onclick="toggleInfo(this);">Kontakt</a></li>*@
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <!-- Header -->
+        <section id="headerSection">
+            <div id="headerwrap">
+                <div class="header-content">
+                    <h1 id="homeHeading" href="#page-top" data-scroll="Main">Yoku sushi & Take away</h1>
+                    <div class="header-content-inner">
+                        <p>Frederiksundsvej 146e - Brønshøj 2700</p>
+                        <p>Eat here & Take It away</p>
+                        <p><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></p>
+                        <br />
+                        <a style="font-size:25px" href="#Menu" class="page-scroll" data-scroll="Menu">Se menukort</a>
+                        <div id="fb-root"></div>
+                        <script>
+    (function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+
+                        <!-- Your like button code -->
+                        <div class="fb-like"
+                             data-href="https://www.facebook.com/Yoku-sushi-186999675567789/"
+                             data-layout="standard"
+                             data-action="like"
+                             data-show-faces="true">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="Menu" data-scroll="Menu">
+
+            <iframe width="100%" height="100%" src="https://www.yumpu.com/xx/embed/view/IWdb9V1reOa4ZyTH" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>
+
+        </section>
+
+
+    </div>
+</body>
+</html>

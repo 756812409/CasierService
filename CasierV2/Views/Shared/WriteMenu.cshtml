@@ -1,0 +1,179 @@
+﻿
+    <div class="row-fluid" ng-if="CurrentInvoice"ng-show="CurrentInvoice">
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <table class="WriteMenuTable table table-bordered" ng-style="myStyle">
+                @*<tr id="order" ng-show="makeOrderOrNot" ng-hide="!makeOrderOrNot">
+                    <td><input class="form-control" placeholder="Navn" ng-model="CurrentInvoice.ReservationSet.Name"></td>
+                    <td><input class="form-control" placeholder="Telefon" ng-model="CurrentInvoice.ReservationSet.Phone"></td>
+                    <td><input class="form-control" placeholder="Antal" ng-model="CurrentInvoice.ReservationSet.Amount"></td>
+                    <td><input class="form-control" placeholder="BordNummer" ng-model="CurrentInvoice.Number"></td>
+                    <td>             
+                        <input  mdc-datetime-picker="" date="true" time="true" type="text" id="datetime"
+                               placeholder="Dato og Tidspunkt" show-todays-date="" min-date="date" ng-init="CurrentInvoice.ReservationSet.DateTime" ng-model="CurrentInvoice.ReservationSet.DateTime" class="md-input"
+                               readonly="readonly" >                    
+                    </td>
+                    <td> </td>
+                </tr>*@
+                <tr id="info">
+                    <td style="font-weight: bold;">Id : {{CurrentInvoice.InvoiceHeaderSetId}}</td>
+                    <td>{{CurrentInvoice.CreateDate | date:'dd-MM-yyyy'}} </td>
+                    <td>{{CurrentInvoice.CreateDate | date:'HH:mm:ss'}}</td>
+                    <td style="font-weight: bold;">Bord NR : {{CurrentInvoice.Number}} </td>
+                    <td style="font-weight: bold;" ng-if="takeItwayOrnot==false && CurrentInvoice.PayDate == null"> Total : {{getTotal() }} Kr</td>
+                    <td style="font-weight: bold;" ng-if="takeItwayOrnot==true">{{takeItwayOrnot}} Total : {{getTotalTakeAway()}} Kr</td>
+                    <td style="font-weight: bold;" ng-if="CurrentInvoice.PayDate"> Total : {{CurrentInvoice.Total}} Kr</td>
+                </tr>
+                <tr>
+                    <th>Nr</th>
+                    <th>Menu</th>
+                    <th>Antal</th>
+                    <th>Price</th>
+                    <th>Sum</th>
+                    <th style="padding:0px" ng-show="WantToSplit" class="sharebutton">Quantity</th>
+                </tr>
+
+                <tr class="{{item.ItemSet.Number}}" ng-repeat="item in CurrentInvoice.InvoiceHeaderDetailsSet track by $index" ng-click="setClickedRow($index)" ng-class="{'selected':$index == selectedRow}">
+
+                    <td>{{item.ItemSet.Number}}</td>
+                    <td>{{item.ItemSet.Name}}</td>
+                    <td> {{item.Quantity}}</td>
+                    <td>
+                        <div ng-if="takeItwayOrnot  === false">{{item.ItemSet.Price }}</div>
+                        <div ng-if="takeItwayOrnot  === true" >{{ item.ItemSet.Price}}</div>
+                    </td>
+                    <td>                   
+                        <div ng-if="takeItwayOrnot  === false"> {{item.Quantity*item.ItemSet.Price}}</div>
+                        <div ng-if="takeItwayOrnot  === true">{{item.Quantity*item.ItemSet.Price}}</div>
+                    </td>
+                    <td ng-show="WantToSplit" style="width:100px;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-number"ng-hide="item.splitEntity <= 0" ng-show="item.splitEntity >= 1"ng-click="item.Quantity = item.Quantity+1; item.splitEntity=item.splitEntity-1;setNewItem(CurrentInvoice.InvoiceHeaderSetId,item.splitEntity, item.ItemSet);Pricesum =( item.Quantity - item.splitEntity) * item.ItemSet.Price;" ng-model="item.splitEntity">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+
+                            <input style="width:50px"value="{{item.splitEntity}}" ng-change="setNewItem(CurrentInvoice.InvoiceHeaderSetId, item.splitEntity, item.ItemSet)" class="form-control" ng-model="item.splitEntity">
+
+
+                            <span class="input-group-btn">
+
+                                <button type="button" class="btn btn-success btn-number" ng-hide="item.Quantity <= 0" ng-show="item.Quantity >= 0" ng-click="item.Quantity = item.Quantity-1; item.splitEntity=item.splitEntity+1; setNewItem(CurrentInvoice.InvoiceHeaderSetId, item.splitEntity, item.ItemSet);Pricesum =( item.Quantity - item.splitEntity) * item.ItemSet.Price;" ng-model="item.splitEntity">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div id="writeMenuPad">
+                <table class="zui-table">
+                    <tbody>
+                        <tr>
+                            <th colspan="4">
+
+                                <div id="numpad">
+                                    @*<input type="text" id="display" class="displayCreatorNumber writetable" ng-model="menuNumbers"  />
+                                    <a class="clear" ng-click="menuNumbers = null">
+                                        <span class="glyphicon glyphicon-ban-circle"></span>
+                                    </a>*@
+
+                                    <div class="input-group col-md-12" id="numpad">
+                                        <input type="text" id="display" class="input-lg displayCreatorNumber writetable" ng-model="menuNumbers" />
+                                        <span class="input-group-btn">
+                                            <button class="btn-info btn-lg clear" type="button" ng-click="menuNumbersSetToNull()">
+                                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td ng-click="SetMenuNumbers('7')">7</td>
+                            <td ng-click="SetMenuNumbers('8')">8</td>
+                            <td ng-click="SetMenuNumbers('9')">9</td>
+                            <td ng-click="SetMenuNumbers('*')">*</td>
+                        </tr>
+                        <tr>
+                            <td ng-click="SetMenuNumbers('4')">4</td>
+                            <td ng-click="SetMenuNumbers('5')">5</td>
+                            <td ng-click="SetMenuNumbers('6')">6</td>
+                            <td ng-click="SetMenuNumbers('-')">-</td>
+                        </tr>
+                        <tr>
+                            <td ng-click="SetMenuNumbers('1')">1</td>
+                            <td ng-click="SetMenuNumbers('2')">2</td>
+                            <td ng-click="SetMenuNumbers('3')">3</td>
+                            <td ng-click="CopyRegning(CurrentInvoice);"><span class="glyphicon glyphicon-print"></span></td>
+                        </tr>
+                        <tr>
+                            <td ng-dblclick="DeleteItems(CurrentInvoice)"><span class="glyphicon glyphicon-trash"></span></td>
+                            <td ng-click="SetMenuNumbers('0')">0</td>
+                            <td id="takeaway" ng-click="SetMenuNumbers('a')"><span>a</span></td>
+                            <td ng-click="refresh()"><span ng-hide="WantToSplit" class="glyphicon glyphicon-ok"></span></td>
+                        </tr>
+                        <tr>
+                            <td ng-click="ReturnToMainView();resetMenu();"><span class="glyphicon glyphicon-arrow-left"></span></td>
+                            <td ng-click="SetMenuNumbers('b')"><span>b</span></td>
+                            <td ng-click="SetMenuNumbers('c');"><span>c</span></td>
+                            <td ng-click="payment(WantToSplit);"><span class="glyphicon glyphicon-usd"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="printDiv" style="display:none">
+        </div>
+        </div>
+
+
+
+    <div class="row-fluid" style="text-align:center" ng-if="getCategoryList">
+        <div id="Back" ng-click="resetMenu();" style="display:none;">
+            <a href="#" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-arrow-left"></span> Menu
+            </a>
+        </div>
+        <div ng-repeat="itemsFromCategory in getCategoryList" ng-init="parentIndex = $index" class="MainMenu col-centered" style="display:inline-block">
+            <div class="MenuChoice Main{{itemsFromCategory.CategoryId}}" ng-click="showTobMenuMethod(itemsFromCategory.CategoryId);" id="">
+                <p>{{itemsFromCategory.Name}}</p>
+            </div>
+            <div ng-repeat="subItems in itemsFromCategory.ItemSet track by $index" style="display: inline-block;">
+                <div class="subMenu Sub{{subItems.CategorySetCategoryId}}" style="display:none">
+                    <div ng-click="returnToMainMenu(subItems.CategorySetCategoryId); startOrder(subItems.Number); menuNumbers = null;">
+                        <p>No. {{subItems.Number}}</p><p>{{subItems.Name}}</p><p>Pris {{subItems.Price}} Kr</p>
+                    </div>
+                    <div class="itemImages">
+                        <div id="{{subItems.Number}}" ng-click="ShowItemImages(subItems.Number)"> 
+                           @*<img ng-src="~/Image/{{subItems.Number}}.jpg" height="0" width="0" alt="{{subItems.Description}}" />
+                            <i class="material-icons">image</i>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+
+
+    @*<div class="row row-centered">
+
+        <div class="col-xs-12 col-centered col-min">
+
+            <div id="Back" ng-show="showSubMenu" ng-click="showTobMenuMethod();">
+                <a href="#" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Back
+                </a>
+            </div>
+
+            <div ng-repeat="subItems in subMenuList track by $index">
+
+                <div class="subMenu showMenu" ng-show="showSubMenu" ng-click="showTobMenuMethod(); startOrder(subItems.Number); menuNumbers = null;">ID {{subItems.Number}}<br>{{subItems.Name}}<br>Pris {{subItems.Price}} Kr</div>
+            </div>
+        </div>
+    </div>*@
+

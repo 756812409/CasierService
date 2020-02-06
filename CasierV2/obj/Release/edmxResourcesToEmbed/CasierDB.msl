@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CasierContentModelStoreContainer" CdmEntityContainer="CasierContents">
+    <EntitySetMapping Name="CategorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.CategorySet)">
+        <MappingFragment StoreEntitySet="CategorySet">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreatorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.CreatorSet)">
+        <MappingFragment StoreEntitySet="CreatorSet">
+          <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CPR" ColumnName="CPR" />
+          <ScalarProperty Name="MonthSalary" ColumnName="MonthSalary" />
+          <ScalarProperty Name="HourSalary" ColumnName="HourSalary" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="BankInfo" ColumnName="BankInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceHeaderDetailsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.InvoiceHeaderDetailsSet)">
+        <MappingFragment StoreEntitySet="InvoiceHeaderDetailsSet">
+          <ScalarProperty Name="InvoiceHeaderDetailsId" ColumnName="InvoiceHeaderDetailsId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+          <ScalarProperty Name="InvoiceHeaderSetInvoiceHeaderSetId" ColumnName="InvoiceHeaderSetInvoiceHeaderSetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceHeaderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.InvoiceHeaderSet)">
+        <MappingFragment StoreEntitySet="InvoiceHeaderSet">
+          <ScalarProperty Name="InvoiceHeaderSetId" ColumnName="InvoiceHeaderSetId" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+          <ScalarProperty Name="CreatorSetCreatorId" ColumnName="CreatorSetCreatorId" />
+          <ScalarProperty Name="ReservationSetReservationId" ColumnName="ReservationSetReservationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.ItemSet)">
+        <MappingFragment StoreEntitySet="ItemSet">
+          <ScalarProperty Name="ItemSetId" ColumnName="ItemSetId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CategorySetCategoryId" ColumnName="CategorySetCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReservationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.ReservationSet)">
+        <MappingFragment StoreEntitySet="ReservationSet">
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkinghoursSet">
+      <EntityTypeMapping TypeName="IsTypeOf(CasierContentModel.WorkinghoursSet)">
+        <MappingFragment StoreEntitySet="WorkinghoursSet">
+          <ScalarProperty Name="WorkingHoursId" ColumnName="WorkingHoursId" />
+          <ScalarProperty Name="StartHour" ColumnName="StartHour" />
+          <ScalarProperty Name="EndHour" ColumnName="EndHour" />
+          <ScalarProperty Name="CreatorSetCreatorId" ColumnName="CreatorSetCreatorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="InvoiceHeaderDetailsSetItemSet" TypeName="CasierContentModel.InvoiceHeaderDetailsSetItemSet" StoreEntitySet="InvoiceHeaderDetailsSet">
+      <EndProperty Name="ItemSet">
+        <ScalarProperty Name="ItemSetId" ColumnName="ItemSet_ItemSetId" />
+      </EndProperty>
+      <EndProperty Name="InvoiceHeaderDetailsSet">
+        <ScalarProperty Name="InvoiceHeaderDetailsId" ColumnName="InvoiceHeaderDetailsId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
